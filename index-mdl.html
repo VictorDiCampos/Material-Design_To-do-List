@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>To-do List</title>
+  <!-- <link rel="stylesheet" href="https://code.getmdl.io/1.1.2/material.brown-green.min.css" /> -->
+  <!-- <script defer src="https://code.getmdl.io/1.1.2/material.min.js"></script> -->
+  <!-- <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:300,400,500,700" type="text/css"> -->
+  <!-- <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"> -->
+  <!-- <link rel="stylesheet" type="text/css" href="MaterialDesign-Webfont-master/css/materialdesignicons.min.css"> -->
+  <link rel="stylesheet" type="text/css" href="mdl/material.brown-green.min.css">
+  <link rel="stylesheet" href="style.css">
+  <script type="text/javascript" src="mdl/material.min.js"></script>
+</head>
+<body>
+
+<!-- Uses a header that scrolls with the text, rather than staying
+  locked at the top -->
+<div class="mdl-layout mdl-js-layout">
+  <header class="mdl-layout__header mdl-layout__header--scroll">
+    <div class="mdl-layout__header-row">
+      <!-- Title -->
+      <span class="mdl-layout-title">To-do List</span>
+      <!-- Add spacer, to align navigation to the right -->
+      <div class="mdl-layout-spacer"></div>
+      <!-- Navigation -->
+      <nav class="mdl-navigation">
+        <a class="mdl-navigation__link" href="">All tasks</a>
+        <a class="mdl-navigation__link" href="">Your tasks</a>
+        <a class="mdl-navigation__link" href="">Fineshed tasks</a>
+      </nav>
+    </div>
+  </header>
+  <div class="mdl-layout__drawer">
+    <span class="mdl-layout-title">To-do List</span>
+    <nav class="mdl-navigation">
+      <a class="mdl-navigation__link" href="">Your List</a>
+      <a class="mdl-navigation__link" href="">Settings</a>
+      <a class="mdl-navigation__link" href="">Logout</a>
+    </nav>
+  </div>
+  <div aria-expanded="false" role="button" tabindex="0" class="mdl-layout__drawer-button">
+    <i class="material-icons">format_list_bulleted</i>
+  </div>
+  <main class="mdl-layout__content">
+    <div class="page-content">
+
+      <div class="task-list">
+
+        <div class="add-task">
+          <div class="add-task-1">          
+            <!-- Simple Textfield -->
+            <form action="#">
+              <div class="mdl-textfield mdl-js-textfield">
+                <input class="mdl-textfield__input" type="text" id="sample1">
+                <label class="mdl-textfield__label" for="sample1">Task...</label>                
+              </div>
+            </form>
+          </div>
+          <div class="add-task-2">       
+            <i class="material-icons">attach_file</i>
+            <button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored size-btn">
+              <i class="material-icons">add</i>              
+            </button>
+          </div>
+        </div> 
+
+        <div class="tasks">
+          <div class="task">
+            <!-- <input type="checkbox" name="task" value=""> -->
+            <i class="material-icons">done</i>
+            <span>Prog. Linear: Lista - 24/02</span>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </main>
+</div>
+
+</body>
+</html>
