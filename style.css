@@ -6,16 +6,16 @@
 /* green: rgb(105, 240, 174) */
 /* brown: rgb(121, 85, 72)*/
 
-@font-face {
+/*@font-face {
     font-family: Roboto;
-    src: url(mdl/Fonts/RobotoTTF/RobotoCondensed-Light.ttf);
-}
+    src: url(RobotoTTF/RobotoCondensed-Light.ttf);
+}*/
 
 @font-face {
   font-family: 'Material Icons';
   font-style: normal;
   font-weight: 400;
-  src: local('Material Icons'), local('MaterialIcons-Regular'), url(mdl/Icons/MaterialIcons.woff2) format('woff2');
+  src: local('Material Icons'), local('MaterialIcons-Regular'), url(MaterialIcons.woff2) format('woff2');
 }
 
 .material-icons {
@@ -51,7 +51,7 @@ body {
 }
 
 /*.task-list *{
-  transition-duration: 1s;
+  transition-duration: 0.5s;
 }*/
 .task-list{	
 	width: 40%;
@@ -87,11 +87,21 @@ body {
 	height: 45px;
 	margin-left: 18%;
 }
+.attach-position {
+	position: relative;
+	top: 10px;
+	transition-duration: 0.5s;
+}
+.attach-position:hover {
+	color: rgb(105, 240, 174);
+	cursor: pointer;
+	text-shadow: 0px 2px rgba(0, 0, 0, 0.4);	
+}
 
 .task {
 	width: 100%;
 	height: 60px;
-	background-color: rgb(121, 85, 72); 
+	background-color: rgb(105, 240, 174); 
 	border-bottom: 1px solid black;	
 	padding: 18px 10px;
 }

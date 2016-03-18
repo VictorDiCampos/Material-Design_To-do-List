@@ -10,6 +10,7 @@
   <link rel="stylesheet" type="text/css" href="mdl/material.brown-green.min.css">
   <link rel="stylesheet" href="style.css">
   <script type="text/javascript" src="mdl/material.min.js"></script>
+  <script type="text/javascript" src="script.js"></script>
 </head>
 <body>
 
@@ -32,10 +33,10 @@
   </header>
   <div class="mdl-layout__drawer">
     <span class="mdl-layout-title">To-do List</span>
-    <nav class="mdl-navigation">
-      <a class="mdl-navigation__link" href="">Your List</a>
-      <a class="mdl-navigation__link" href="">Settings</a>
-      <a class="mdl-navigation__link" href="">Logout</a>
+    <nav class="mdl-navigation">      
+      <a class="mdl-navigation__link" href=""><i class="material-icons">format_list_bulleted</i> Your List</a>
+      <a class="mdl-navigation__link" href=""><i class="material-icons">settings</i> Settings</a>
+      <a class="mdl-navigation__link" href=""><i class="material-icons">add</i> Logout</a>
     </nav>
   </div>
   <div aria-expanded="false" role="button" tabindex="0" class="mdl-layout__drawer-button">
@@ -57,9 +58,9 @@
             </form>
           </div>
           <div class="add-task-2">       
-            <i class="material-icons">attach_file</i>
-            <button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored size-btn">
-              <i class="material-icons">add</i>              
+            <i class="material-icons attach-position">attach_file</i>
+            <button onclick="addingTask()" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored size-btn">
+              <i class="material-icons">add</i>
             </button>
           </div>
         </div> 
@@ -67,8 +68,10 @@
         <div class="tasks">
           <div class="task">
             <!-- <input type="checkbox" name="task" value=""> -->
-            <i class="material-icons">done</i>
-            <span>Prog. Linear: Lista - 24/02</span>
+            <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="switch-1">
+              <input type="checkbox" id="switch-1" class="mdl-switch__input" checked>
+              <span class="mdl-switch__label">Prog. Linear: Lista - 24/02</span>
+            </label>
           </div>
         </div>
 
