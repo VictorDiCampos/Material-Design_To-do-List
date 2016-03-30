@@ -7,10 +7,11 @@
   <!-- <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:300,400,500,700" type="text/css"> -->
   <!-- <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"> -->
   <!-- <link rel="stylesheet" type="text/css" href="MaterialDesign-Webfont-master/css/materialdesignicons.min.css"> -->
-  <link rel="stylesheet" type="text/css" href="mdl/material.brown-green.min.css">
-  <link rel="stylesheet" href="style.css">
-  <script type="text/javascript" src="mdl/material.min.js"></script>
-  <script type="text/javascript" src="script.js"></script>
+  <link rel="stylesheet" type="text/css" href="css/mdl/material.brown-green.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <script type="text/javascript" src="css/mdl/material.min.js"></script>
+	<script type="text/javascript" src="js/jquery-1.12.2.min.js"></script>
+  <script type="text/javascript" src="js/script.js"></script>
 </head>
 <body>
 
@@ -36,7 +37,7 @@
     <nav class="mdl-navigation">      
       <a class="mdl-navigation__link" href=""><i class="material-icons">format_list_bulleted</i> Your List</a>
       <a class="mdl-navigation__link" href=""><i class="material-icons">settings</i> Settings</a>
-      <a class="mdl-navigation__link" href=""><i class="material-icons">add</i> Logout</a>
+      <a class="mdl-navigation__link" href=""><i class="material-icons">arrow_back</i> Logout</a>
     </nav>
   </div>
   <div aria-expanded="false" role="button" tabindex="0" class="mdl-layout__drawer-button">
@@ -47,6 +48,7 @@
 
       <div class="task-list">
 
+      	<!-- ADD SECTION -->
         <div class="add-task">
           <div class="add-task-1">          
             <!-- Simple Textfield -->
@@ -59,21 +61,22 @@
           </div>
           <div class="add-task-2">       
             <i class="material-icons attach-position">attach_file</i>
-            <button onclick="addingTask()" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored size-btn">
+            <button class="btn-add-task mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored">
               <i class="material-icons">add</i>
             </button>
           </div>
         </div> 
 
-        <div class="tasks">
-          <div class="task">
-            <!-- <input type="checkbox" name="task" value=""> -->
-            <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="switch-1">
-              <input type="checkbox" id="switch-1" class="mdl-switch__input" checked>
-              <span class="mdl-switch__label">Prog. Linear: Lista - 24/02</span>
-            </label>
-          </div>
-        </div>
+        <!-- TASKS -->
+        <!-- <div class="task">          
+          <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="switch-1">
+            <input type="checkbox" id="switch-1" class="mdl-switch__input" checked>
+            <span class="mdl-switch__label">Test task</span>
+          </label>
+          <span class="rm-task">
+          	<i class="material-icons">clear</i>
+          </span>
+        </div> -->
 
       </div>
 
