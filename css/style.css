@@ -80,12 +80,18 @@ body {
 	float: left;
 	width: 30%;
 	padding-left: 4%;
+	/*margin-top: 50px;*/
 }
 .btn-add-task {
 	min-width: 45px;
 	width: 45px;
 	height: 45px;
 	margin-left: 18%;
+}
+.input-error {
+	clear: both;
+	display: block;
+	color: red;
 }
 .attach-position {
 	position: relative;
@@ -109,6 +115,7 @@ body {
 .task label{
 	width: 91%;
 }
+
 
 .rm-task {
 	position: absolute;
