@@ -56,5 +56,7 @@ Rails.application.routes.draw do
   #     resources :products
   #   end
 
+  resources :todo
+
   root 'todo#index'
 end
