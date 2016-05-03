@@ -50,27 +50,33 @@
 
       	<!-- ADD SECTION -->
         <div class="add-task">
-          <div class="add-task-1">          
-            <!-- Simple Textfield -->
-            <form action="#">
-              <div class="mdl-textfield mdl-js-textfield">            
-                	<input class="mdl-textfield__input" type="text" id="sample1" maxlength="40">
-                	<label class="mdl-textfield__label" for="sample1">Description...</label>                	                           
+          <%#= form_for :todo, url: todo_path do |f| %>
+          <%= form_for :todo do |f| %>
+            <div class="add-task-1">          
+              <!-- Simple Textfield -->
+              <!-- <form action="#"> -->            
+              <div class="mdl-textfield mdl-js-textfield">
+                  <%= f.label :sample1, 'Description...', :class => "mdl-textfield__label"  %>
+                  <%#= f.label :sample1 , :input_html => { :class => "mdl-textfield__label"}%>  
+                  <%= f.text_field :sample1, :class => "mdl-textfield__input" %>
+                	<!-- <input class="mdl-textfield__input" type="text" id="sample1" maxlength="40"> -->
+                	<!-- <label class="mdl-textfield__label" for="sample1">Description...</label>                	                            -->
               </div>
 <!--               <div class="mdl-textfield mdl-js-textfield">
               	<input class="mdl-textfield__input" type="date" id="sample2" maxlength="40">
                	<label class="mdl-textfield__label" for="sample2">Date...</label>                
-              </div>  -->
+              </div>  -->            
+              <!-- </form> -->
+            </div>
 
-            </form>
-          </div>
-          <div class="add-task-2">       
-            <i class="material-icons attach-position">attach_file</i>
-            <button class="btn-add-task mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored">
-              <i class="material-icons">add</i>
-            </button>
-          </div>          
-
+            <div class="add-task-2">       
+              <i class="material-icons attach-position">attach_file</i>
+              <button class="btn-add-task mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored">
+                <i class="material-icons">add</i>
+                <%= f.submit "Adding", :class => "invisible" %>              
+              </button>
+            </div>
+          <% end %>          
         </div> 
 
         <!-- TASKS -->

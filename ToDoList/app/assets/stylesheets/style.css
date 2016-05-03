@@ -92,6 +92,9 @@ body {
 	height: 45px;
 	margin-left: 18%;
 }
+.invisible {
+	visibility: hidden;
+}
 .input-error {
 	clear: both;
 	display: block;
