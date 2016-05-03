@@ -2,25 +2,16 @@
 <html>
 <head>
   <title>To-do List</title>
-  <!-- <link rel="stylesheet" href="https://code.getmdl.io/1.1.2/material.brown-green.min.css" /> -->
-  <!-- <script defer src="https://code.getmdl.io/1.1.2/material.min.js"></script> -->
-  <!-- <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:300,400,500,700" type="text/css"> -->
-  <!-- <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"> -->
-  
 
-  
   <%= stylesheet_link_tag "mdl" %>
 
-  <!-- <script type="text/javascript" src="js/jquery-1.12.2.min.js"></script> -->
 </head>
 <body>
 
-<!-- Uses a header that scrolls with the text, rather than staying
-  locked at the top -->
 <div class="mdl-layout mdl-js-layout">
   <header class="mdl-layout__header mdl-layout__header--scroll">
     <div class="mdl-layout__header-row">
-      <!-- Title -->
+
       <span class="mdl-layout-title">To-do List</span>
       <!-- Add spacer, to align navigation to the right -->
       <div class="mdl-layout-spacer"></div>
@@ -51,30 +42,27 @@
       	<!-- ADD SECTION -->
         <div class="add-task">
           <%#= form_for :todo, url: todo_path do |f| %>
-          <%= form_for :todo do |f| %>
+          <%#= form_for :todo do |f| %>
+          <%#= form_for( :todo, url: new_todo_path, method: 'POST') do |f| %>
+          <%#= form_for :todo, url: todo_index_path do |f| %>
+          <%= form_for :todo, url: new_todo_path do |f| %>
             <div class="add-task-1">          
               <!-- Simple Textfield -->
-              <!-- <form action="#"> -->            
               <div class="mdl-textfield mdl-js-textfield">
-                  <%= f.label :sample1, 'Description...', :class => "mdl-textfield__label"  %>
-                  <%#= f.label :sample1 , :input_html => { :class => "mdl-textfield__label"}%>  
-                  <%= f.text_field :sample1, :class => "mdl-textfield__input" %>
-                	<!-- <input class="mdl-textfield__input" type="text" id="sample1" maxlength="40"> -->
-                	<!-- <label class="mdl-textfield__label" for="sample1">Description...</label>                	                            -->
+                  <%#= f.label :description, 'Description...', :class => "mdl-textfield__label"  %>
+                  <%#= f.text_field :content :description, :class => "mdl-textfield__input" %>
+                  <%= f.label 'Description...', :for => 'description', :class => "mdl-textfield__label"  %>
+                  <%= f.text_field :barcode, :id => "description", :class => "mdl-textfield__input" %>
+                  <%#= text_field_tag :barcode, params[:barcode], id: 'autocomplete' %>
               </div>
-<!--               <div class="mdl-textfield mdl-js-textfield">
-              	<input class="mdl-textfield__input" type="date" id="sample2" maxlength="40">
-               	<label class="mdl-textfield__label" for="sample2">Date...</label>                
-              </div>  -->            
-              <!-- </form> -->
             </div>
 
             <div class="add-task-2">       
               <i class="material-icons attach-position">attach_file</i>
               <button class="btn-add-task mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored">
                 <i class="material-icons">add</i>
-                <%= f.submit "Adding", :class => "invisible" %>              
-              </button>
+                <%#= f.submit "Adding", :class => "invisible" %>
+              </button>              
             </div>
           <% end %>          
         </div> 

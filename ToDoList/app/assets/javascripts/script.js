@@ -12,14 +12,11 @@ $(document).ready(function(){
 		$input = $('.mdl-textfield__input');
 		$label = $('.mdl-textfield__label');
 
-		if ( $input.val().length === 0 && $('.input-error').length === 0 ) {
-			$label.css('color', 'red');
-			// alert("Insert a description for the new task.");
-			$message = '<span class="input-error">O campo a cima e obrigatorio.</span>';
-			$(".add-task").append($message);			
-		
-		} else if($input.val().length > 0) {
+		if($input.val().length > 0) {
 			e.preventDefault();
+
+			// Submit do formulário
+			$("form:first").trigger("submit");
 
 			$task = '<div class="task"><label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="switch-1"><input type="checkbox" id="switch-1" class="mdl-switch__input"><span class="mdl-switch__label">'+$(".mdl-textfield__input").val()+ '</span></label><span class="rm-task"><i class="material-icons">clear</i></div>';
 			$(".task-list").append($task);
@@ -28,6 +25,13 @@ $(document).ready(function(){
 				e.preventDefault();
 				$element = this.closest('div.task').remove();
 			});
+		}
+		else if ( $input.val().length === 0 && $('.input-error').length === 0 ) {
+			$label.css('color', 'red');
+			// alert("Insert a description for the new task.");
+			$message = '<span class="input-error">O campo a cima e obrigatorio.</span>';
+			$(".add-task").append($message);			
+		
 		}
 
 		

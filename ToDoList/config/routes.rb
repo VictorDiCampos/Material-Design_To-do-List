@@ -59,4 +59,5 @@ Rails.application.routes.draw do
   resources :todo
 
   root 'todo#index'
+
 end
