@@ -45,15 +45,14 @@
           <%#= form_for :todo do |f| %>
           <%#= form_for( :todo, url: new_todo_path, method: 'POST') do |f| %>
           <%#= form_for :todo, url: todo_index_path do |f| %>
-          <%= form_for :todo, url: new_todo_path do |f| %>
+          <%#= form_for @todo, url: new_todo_path do |f| %>
+
+          <%= form_for @todo, url: todo_index_path do |f| %>
             <div class="add-task-1">          
               <!-- Simple Textfield -->
               <div class="mdl-textfield mdl-js-textfield">
-                  <%#= f.label :description, 'Description...', :class => "mdl-textfield__label"  %>
-                  <%#= f.text_field :content :description, :class => "mdl-textfield__input" %>
-                  <%= f.label 'Description...', :for => 'description', :class => "mdl-textfield__label"  %>
-                  <%= f.text_field :barcode, :id => "description", :class => "mdl-textfield__input" %>
-                  <%#= text_field_tag :barcode, params[:barcode], id: 'autocomplete' %>
+                  <%= f.label :description, 'Description...', :for => 'description', :class => "mdl-textfield__label"  %>
+                  <%= f.text_field :description, :class => "mdl-textfield__input" %>        
               </div>
             </div>
 
@@ -61,7 +60,7 @@
               <i class="material-icons attach-position">attach_file</i>
               <button class="btn-add-task mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored">
                 <i class="material-icons">add</i>
-                <%#= f.submit "Adding", :class => "invisible" %>
+                <%= f.submit "Adding", :class => "invisible" %>
               </button>              
             </div>
           <% end %>          

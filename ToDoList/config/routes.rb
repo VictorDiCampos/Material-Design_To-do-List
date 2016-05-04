@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
-  get 'todo/index'
+  resources :tasks
+
+  # get 'todo/index'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
@@ -57,6 +59,14 @@ Rails.application.routes.draw do
   #   end
 
   resources :todo
+
+  # post "teste/" => "todo#teste"
+
+  post "newtask/" => "todo#newtask"
+
+  delete "deltask/" => "todo#deltask"
+
+  # root :to => 'application#index'
 
   root 'todo#index'
 

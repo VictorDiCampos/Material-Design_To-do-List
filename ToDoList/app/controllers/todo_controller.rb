@@ -1,48 +1,39 @@
 class TodoController < ApplicationController
-  def index
-    @todo = Todo.all
-  end
+  # def teste
+  def newtask
 
-  def show
-    @todo = Todo.find(params[:description])
-  end
-
-  def new
     @todo = Todo.new
-    # @todo.description = params[:description]
-    # @todo.save!
-    # puts params
-	end
+    @todo.description = params[:description]
 
-  def edit
+    if @todo.valid?
+        @todo.save
+        
+        render json: {success:true, todo: {id: @todo.id, description: @todo.description}}
+        # flash[:success] = "A Clínica <strong>#{@clinic.name}</strong> foi criado com sucesso.".html_safe
+        # redirect_to clinics_path
+      else
+        
+        render json: {success:false}
+        # flash.now[:error] = "<strong>Erro</strong> ao criar a Clínica <strong>#{@clinic.name}</strong>, tente novamente.".html_safe
+        # render :new
+      end
+
+    # render plain: params[:description]
+
   end
 
-  def create
-    # @todo = Todo.new params.require(:todo).permit(:description)
-    @todo = Todo.new(todo_params)
-    #@todo.save!
-
-    if @todo.save
-      redirect_to @todo
-    end
-
-    # @restaurante = Restaurante.new params.require(:restaurante).permit(:nome, :endereco, :especialidade)
-    #@restaurante.save
-    # render plain: params[:article].inspect
-
-    # puts params
-    
-    # render plain: params[:todo].inspect
+  def gettask
   end
 
-  def update
+  def deltask
+    @todo = Todo.find(params[:description])
+    @todo.destroy
+
   end
 
-  def destroy
-  end 
+  def index
+    @todos = Todo.all
+    @todo = Todo.new
+  end
 
-  private
-    def article_params
-      
-    end
 end

@@ -1,39 +1,60 @@
-// var btn_task = document.getElementById('btn-add-task');
-// btn_task.onclick = function () {	
-// 	var task = document.createElement('div');
-// 	var elemento = document.getElementById('task-list');
-// 	elemento.appendChild(task);
-// };
-
 $(document).ready(function(){
+	// $.get( "/get_task", function( data ) {
+
+ //  	$task = '<div class="task">
+	// 		<label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="switch-1">
+	// 		<input type="checkbox" id="switch-1" class="mdl-switch__input">
+	// 		<span class="mdl-switch__label">'+data.todo.description+ '</span></label>
+	// 		<span class="rm-task"><i class="material-icons">clear</i></div>';
+			
+	// 	$(".task-list").append($task);
+
+	// 	console.log( "Load was performed." );
+	// });
+
 	$btn_add_task = $('.btn-add-task');
 	$btn_add_task.click(function(e){
 
-		$input = $('.mdl-textfield__input');
-		$label = $('.mdl-textfield__label');
+		// $.post('/teste', {description: $(".mdl-textfield__input").val()}, function(data){
+		//   console.log(data.todo.description);
+	 //  });
 
-		if($input.val().length > 0) {
-			e.preventDefault();
+	  $.post('/newtask', {description: $(".mdl-textfield__input").val()}, function(data){
+		  // console.log(data.todo.description);
+			
+			$input = $('.mdl-textfield__input');
+			$label = $('.mdl-textfield__label');
 
-			// Submit do formulário
-			$("form:first").trigger("submit");
-
-			$task = '<div class="task"><label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="switch-1"><input type="checkbox" id="switch-1" class="mdl-switch__input"><span class="mdl-switch__label">'+$(".mdl-textfield__input").val()+ '</span></label><span class="rm-task"><i class="material-icons">clear</i></div>';
-			$(".task-list").append($task);
-
-			$('.rm-task').click(function(e) {
+			if($input.val().length > 0) {
 				e.preventDefault();
-				$element = this.closest('div.task').remove();
-			});
-		}
-		else if ( $input.val().length === 0 && $('.input-error').length === 0 ) {
-			$label.css('color', 'red');
-			// alert("Insert a description for the new task.");
-			$message = '<span class="input-error">O campo a cima e obrigatorio.</span>';
-			$(".add-task").append($message);			
-		
-		}
 
-		
+				$task = '<div class="task"><label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="switch-1"><input type="checkbox" id="switch-1" class="mdl-switch__input"><span class="mdl-switch__label">'+$(".mdl-textfield__input").val()+ '</span></label><span class="rm-task"><i class="material-icons">clear</i></div>';
+				$(".task-list").append($task);
+
+				$('.rm-task').click(function(e) {
+					e.preventDefault();
+
+					$element = this.closest('div.task').remove();
+
+					$.ajax({
+				    url: '/deltask',
+				    type: 'DELETE',
+				    data: {description: $(".mdl-textfield__input").val()}
+  				});
+					// $.post('/deltask', {description: $(".mdl-textfield__input").val()}, function(data){
+		  	// 		// console.log(data.todo.description);
+	 			//  	});
+				});
+			}
+			else if ( $input.val().length === 0 && $('.input-error').length === 0 ) {
+				$label.css('color', 'red');		
+				$message = '<span class="input-error">O campo a cima e obrigatorio.</span>';
+				$(".add-task").append($message);			
+			}
+
+	  });
+
+	  return false;
+
 	});
 });
