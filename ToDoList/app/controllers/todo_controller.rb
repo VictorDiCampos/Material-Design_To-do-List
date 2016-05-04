@@ -23,11 +23,24 @@ class TodoController < ApplicationController
   end
 
   def gettask
+
+    # @todos = Todo.all
+    @todo = Todo.find(params[:id])
+    render json: {success:true, todo: {id: @todo.id, description: @todo.description}}
+    # tasks_partial = ""    
+
+    # @todos.each do |task|
+    #   tasks_partial += render_to_string(task: task)
+    # end
+    
+    # render json: {html: tasks_partial}
+
   end
 
-  def deltask
-    @todo = Todo.find(params[:description])
+  def deltask    
+    @todo = Todo.find(params[:id])   
     @todo.destroy
+    render json: {success:true} 
 
   end
 

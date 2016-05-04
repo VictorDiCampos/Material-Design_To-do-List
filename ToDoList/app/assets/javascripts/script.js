@@ -1,16 +1,15 @@
 $(document).ready(function(){
-	// $.get( "/get_task", function( data ) {
-
- //  	$task = '<div class="task">
-	// 		<label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="switch-1">
-	// 		<input type="checkbox" id="switch-1" class="mdl-switch__input">
-	// 		<span class="mdl-switch__label">'+data.todo.description+ '</span></label>
-	// 		<span class="rm-task"><i class="material-icons">clear</i></div>';
-			
-	// 	$(".task-list").append($task);
-
+	// $.get( '/gettask', function( data ) {
 	// 	console.log( "Load was performed." );
 	// });
+
+	$.post('/gettask', {id: 43}, function(data){
+		// console.log(data.todo.description);
+	});
+
+
+  // $task = '<div class="task"><label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="switch-1"><input type="checkbox" id="switch-1" class="mdl-switch__input"><span class="mdl-switch__label">'+data.todo.description+ '</span></label><span class="rm-task"><i class="material-icons">clear</i></div>';			
+	// $(".task-list").append($task);
 
 	$btn_add_task = $('.btn-add-task');
 	$btn_add_task.click(function(e){
@@ -34,16 +33,10 @@ $(document).ready(function(){
 				$('.rm-task').click(function(e) {
 					e.preventDefault();
 
-					$element = this.closest('div.task').remove();
+		  		$.post('/deltask', {id: data.todo.id}, function(data){});
 
-					$.ajax({
-				    url: '/deltask',
-				    type: 'DELETE',
-				    data: {description: $(".mdl-textfield__input").val()}
-  				});
-					// $.post('/deltask', {description: $(".mdl-textfield__input").val()}, function(data){
-		  	// 		// console.log(data.todo.description);
-	 			//  	});
+	 			 	$element = this.closest('div.task').remove();
+
 				});
 			}
 			else if ( $input.val().length === 0 && $('.input-error').length === 0 ) {

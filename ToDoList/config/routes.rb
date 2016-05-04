@@ -60,11 +60,11 @@ Rails.application.routes.draw do
 
   resources :todo
 
-  # post "teste/" => "todo#teste"
-
   post "newtask/" => "todo#newtask"
 
-  delete "deltask/" => "todo#deltask"
+  get "gettask/" => "todo#gettask"
+
+  post "deltask/" => "todo#deltask"
 
   # root :to => 'application#index'
 
