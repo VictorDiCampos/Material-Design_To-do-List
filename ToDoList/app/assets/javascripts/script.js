@@ -1,3 +1,31 @@
+// var tasks = function() {
+// 	var init = function() {
+// 		console.log('iniciou');
+// 		getTasks();
+// 	}
+
+// 	var getTasks = function() {
+// 		alert('pegar task');
+// 		var task = {id: 2, description: 'asdasdas'};
+// 		setTask(task);
+// 	}
+
+// 	var setTask = function(task) {
+// 		console.log(task, 'inserir no html')
+// 		$('fsdf').on('click', clickRemoveTask);
+// 	}
+
+// 	var clickRemoveTask = function() {
+// 		$(this)
+// 	}
+
+// 	return { init: init };
+// }();
+
+// JQUERY TEMPLATE
+
+// $(document).ready(tasks.init);
+
 $(document).ready(function(){
 	// $.get( '/gettask', function( data ) {
 	// 	console.log( "Load was performed." );
@@ -63,7 +91,6 @@ $(document).ready(function(){
 				$rm_task.click(function(e) {
 					e.preventDefault();
 
-					// console.log( $('div.task').length );
 					$description = $(this).closest("div.task").find("span.mdl-switch__label").text();
 
 					$.ajax({
@@ -75,19 +102,13 @@ $(document).ready(function(){
 
 							$currentId = -1;
 
-							console.log("currentId: " + $currentId );
-							console.log("description: " + $description );
-
 							for (var i = 0; i < ids.length; ++i) {
 
 								if ( data[i].description === $description) {							
-									$currentId = data[i].id;
-									console.log("data: " + data[i].description);
+									$currentId = data[i].id;									
 								};
 
-							};
-
-							console.log("currentId: " + $currentId );
+							};							
 
 							if( $currentId >= 0 ){					
 								$.post('/deltask', {id: $currentId}, function(data){});
@@ -108,40 +129,6 @@ $(document).ready(function(){
 			}
 
 	  });
-
-		// $rm_task = $('.rm-task');
-		// 	$rm_task.click(function(e) {
-		// 		e.preventDefault();
-
-		// 		// console.log( $('div.task').length );
-
-		// 		$.ajax({
-		// 		 type: "GET",
-		// 		 url: "/gettask",
-		// 		 dataType: "JSON",
-		// 		 data: { 'description': '' },
-		// 		 success: function(data) {
-
-		// 			$currentId = -1;
-		// 			$description = $(this).closest("div.task").find("span.mdl-switch__label").text();
-
-		// 			for (var i = 0; i < ids.length; ++i) {
-
-		// 				if ( data[i].description === $description) {							
-		// 					$currentId = data[i].id;
-		// 				}
-
-		// 			};					
-
-		// 			if( $currentId >= 0 ){					
-		// 			 	$.post('/deltask', {id: $currentId}, function(data){});
-
-		// 				$element = this.closest('div.task').remove();
-		// 			}
-
-		// 		}
-		// 	});
-		// });
 
 	return false;
 

@@ -41,11 +41,6 @@
 
       	<!-- ADD SECTION -->
         <div class="add-task">
-          <%#= form_for :todo, url: todo_path do |f| %>
-          <%#= form_for :todo do |f| %>
-          <%#= form_for( :todo, url: new_todo_path, method: 'POST') do |f| %>
-          <%#= form_for :todo, url: todo_index_path do |f| %>
-          <%#= form_for @todo, url: new_todo_path do |f| %>
 
           <%= form_for @todo, url: todo_index_path do |f| %>
             <div class="add-task-1">          
@@ -67,15 +62,6 @@
         </div> 
 
         <!-- TASKS -->
-<!--         <div class="task">          
-          <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="switch-1">
-            <input type="checkbox" id="switch-1" class="mdl-switch__input" checked>
-            <span class="mdl-switch__label">Test task</span>
-          </label>
-          <span class="rm-task">
-          	<i class="material-icons">clear</i>
-          </span>
-        </div> -->
 
       </div>
 
