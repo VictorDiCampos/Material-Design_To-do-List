@@ -3,10 +3,6 @@ $(document).ready(function(){
 	// 	console.log( "Load was performed." );
 	// });
 
-	// $.post('/gettask', {id: 43}, function(data){
-	// 	// console.log(data.todo.description);
-	// });
-
 	$.ajax({
 	  type: "GET",
 	  url: "/gettask",
@@ -44,13 +40,10 @@ $(document).ready(function(){
 	  }
 	});
 
+	var ids = [];
 
 	$btn_add_task = $('.btn-add-task');
 	$btn_add_task.click(function(e){
-
-		// $.post('/teste', {description: $(".mdl-textfield__input").val()}, function(data){
-		//   console.log(data.todo.description);
-	 //  });
 
 	  $.post('/newtask', {description: $(".mdl-textfield__input").val()}, function(data){
 		  // console.log(data.todo.description);
@@ -58,36 +51,56 @@ $(document).ready(function(){
 			$input = $('.mdl-textfield__input');
 			$label = $('.mdl-textfield__label');
 
-			// cria lista que receberá append de cada id
-
 			if($input.val().length > 0) {
 				e.preventDefault();
 
 				$task = '<div class="task"><label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="switch-1"><input type="checkbox" id="switch-1" class="mdl-switch__input"><span class="mdl-switch__label">'+$(".mdl-textfield__input").val()+ '</span></label><span class="rm-task"><i class="material-icons">clear</i></div>';
 				$(".task-list").append($task);
 
-				//da o append do id atual data.todo.id
+				ids.push( data.todo.id );
 
-				$('.rm-task').click(function(e) {
+				$rm_task = $('.rm-task');
+				$rm_task.click(function(e) {
 					e.preventDefault();
 
-					for (var i = 0; i < data.length; ++i) {
+					// console.log( $('div.task').length );
+					$description = $(this).closest("div.task").find("span.mdl-switch__label").text();
 
-						// $listPosition = lista posição [i];
-						$taskId = data.todo.id;
+					$.ajax({
+						type: "GET",
+						url: "/gettask",
+						dataType: "JSON",
+						data: { 'description': '' },
+						success: function(data) {
 
-						if ( $spanText == $taskDesc ) {						
+							$currentId = -1;
 
-				  		$.post('/deltask', {id: data[i].id}, function(data){});
+							console.log("currentId: " + $currentId );
+							console.log("description: " + $description );
 
-			 			 	$element = this.closest('div.task').remove();
+							for (var i = 0; i < ids.length; ++i) {
 
-						};
+								if ( data[i].description === $description) {							
+									$currentId = data[i].id;
+									console.log("data: " + data[i].description);
+								};
 
-					};
+							};
+
+							console.log("currentId: " + $currentId );
+
+							if( $currentId >= 0 ){					
+								$.post('/deltask', {id: $currentId}, function(data){});
+							};
+
+						}
+					});
+					
+					$element = this.closest('div.task').remove();
 
 				});
 			}
+
 			else if ( $input.val().length === 0 && $('.input-error').length === 0 ) {
 				$label.css('color', 'red');		
 				$message = '<span class="input-error">O campo a cima e obrigatorio.</span>';
@@ -96,7 +109,42 @@ $(document).ready(function(){
 
 	  });
 
-	  return false;
+		// $rm_task = $('.rm-task');
+		// 	$rm_task.click(function(e) {
+		// 		e.preventDefault();
+
+		// 		// console.log( $('div.task').length );
+
+		// 		$.ajax({
+		// 		 type: "GET",
+		// 		 url: "/gettask",
+		// 		 dataType: "JSON",
+		// 		 data: { 'description': '' },
+		// 		 success: function(data) {
+
+		// 			$currentId = -1;
+		// 			$description = $(this).closest("div.task").find("span.mdl-switch__label").text();
+
+		// 			for (var i = 0; i < ids.length; ++i) {
+
+		// 				if ( data[i].description === $description) {							
+		// 					$currentId = data[i].id;
+		// 				}
+
+		// 			};					
+
+		// 			if( $currentId >= 0 ){					
+		// 			 	$.post('/deltask', {id: $currentId}, function(data){});
+
+		// 				$element = this.closest('div.task').remove();
+		// 			}
+
+		// 		}
+		// 	});
+		// });
+
+	return false;
 
 	});
+
 });
