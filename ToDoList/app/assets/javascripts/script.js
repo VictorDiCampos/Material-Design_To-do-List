@@ -82,7 +82,11 @@ $(document).ready(function(){
 			if($input.val().length > 0) {
 				e.preventDefault();
 
-				$task = '<div class="task"><label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="switch-1"><input type="checkbox" id="switch-1" class="mdl-switch__input"><span class="mdl-switch__label">'+$(".mdl-textfield__input").val()+ '</span></label><span class="rm-task"><i class="material-icons">clear</i></div>';
+				$task = '<div class="task">'
+				+'<label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="switch-1">'
+				+'<input type="checkbox" id="switch-1" class="mdl-switch__input">'
+				+'<span class="mdl-switch__label">'+$(".mdl-textfield__input").val()+ '</span>'
+				+'</label><span class="rm-task"><i class="material-icons">clear</i></div>';
 				$(".task-list").append($task);
 
 				ids.push( data.todo.id );
@@ -134,4 +138,46 @@ $(document).ready(function(){
 
 	});
 
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+$(document).ready(function(){
+	angular.module('toDoList', []);
+
+  angular.module('toDoList').controller('taskListController', function($scope){
+  	
+  });
 });
