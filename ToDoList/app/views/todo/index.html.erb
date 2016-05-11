@@ -1,14 +1,15 @@
 <!DOCTYPE html>
-<html ng-app="toDoList">
+<html ng-app="todolist">
 <head>
   <title>To-do List</title>
-
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.7/angular-route.min.js"></script>
   <%#= stylesheet_link_tag "mdl" %>
 
 </head>
-<body>
+<body ng-controller="taskListController">
 
-<div ng-controller="taskListController" class="mdl-layout mdl-js-layout">
+<div class="mdl-layout mdl-js-layout">
   <header class="mdl-layout__header mdl-layout__header--scroll">
     <div class="mdl-layout__header-row">
 
@@ -40,25 +41,23 @@
       <div class="task-list">
 
       	<!-- ADD SECTION -->
-        <div class="add-task">
-
-          <%= form_for @todo, url: todo_index_path do |f| %>
+        <div class="add-task" ng-init="getAll()">
+          <form>
             <div class="add-task-1">          
               <!-- Simple Textfield -->
               <div class="mdl-textfield mdl-js-textfield">
-                  <%= f.label :description, 'Description...', :for => 'description', :class => "mdl-textfield__label"  %>
-                  <%= f.text_field :description, :class => "mdl-textfield__input" %>        
+                  <input class="mdl-textfield__input" type="text" id="sample1">
+                  <label class="mdl-textfield__label" for="sample1">Description...</label>      
               </div>
             </div>
 
             <div class="add-task-2">       
               <i class="material-icons attach-position">attach_file</i>
               <button class="btn-add-task mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored">
-                <i class="material-icons">add</i>
-                <%= f.submit "Adding", :class => "invisible" %>
+                <i class="material-icons">add</i>                
               </button>              
             </div>
-          <% end %>          
+          </form>
         </div> 
 
         <!-- TASKS -->

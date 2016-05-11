@@ -11,8 +11,8 @@ body {
 }
 
 @font-face {
-	font-family: Roboto;
-  src: url(assets/Fonts/RobotoTTF/RobotoCondensed-Regular.ttf);
+	font-family: 'Roboto';
+  src: local('Roboto'), url(../Fonts/RobotoTTF/RobotoCondensed-Regular.ttf). format('ttf');
 }
 
 @font-face {
@@ -49,7 +49,7 @@ span {
 }
 body {
 	background-color: rgb(136, 136, 136);
-	font-family: Arial;
+	font-family: "Roboto", Arial;
 	color: white;
 }
 
@@ -117,7 +117,7 @@ body {
 	background-color: rgb(105, 240, 174); 
 	border-bottom: 1px solid black;	
 	padding: 18px 10px;
-	font-family: Roboto;
+	font-family: 'Roboto';
 }
 .task label{
 	width: 91%;
