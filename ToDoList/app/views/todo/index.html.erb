@@ -2,8 +2,8 @@
 <html ng-app="todolist">
 <head>
   <title>To-do List</title>
-  <!-- // <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script> -->
-  <!-- // <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.7/angular-route.min.js"></script> -->
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.7/angular-route.min.js"></script>
   <%#= stylesheet_link_tag "mdl" %>
 
 </head>
@@ -46,27 +46,27 @@
             <div class="add-task-1">          
               <!-- Simple Textfield -->
               <div class="mdl-textfield mdl-js-textfield">
-                  <input class="mdl-textfield__input" type="text" id="sample1">
+                  <input class="mdl-textfield__input" type="text" id="sample1" ng-model="description">
                   <label class="mdl-textfield__label" for="sample1">Description...</label>      
               </div>
             </div>
 
             <div class="add-task-2">       
               <i class="material-icons attach-position">attach_file</i>
-              <button class="btn-add-task mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored">
+              <button class="btn-add-task mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored" ng-click="addTask(description)">
                 <i class="material-icons">add</i>                
               </button>              
             </div>
           </form>
-        </div> 
+        </div>
 
         <!-- TASKS -->
         <div class="task" ng-repeat='task in tasks'>
           <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="switch-1">
             <input type="checkbox" id="switch-1" class="mdl-switch__input">
-            <span class="mdl-switch__label">{{task.description}}</span>
+            <span class="mdl-switch__label" data-id={{task.id}}>{{task.description}}</span>
           </label>
-          <span class="rm-task"><i class="material-icons">clear</i>
+          <span class="rm-task" ng-click="delTask(task.id)"><i class="material-icons">clear</i>
         </div>    
 
       </div>
