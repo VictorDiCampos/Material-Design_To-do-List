@@ -45,7 +45,6 @@ $(document).ready(function(){
 				$(".task-list").append($task);
 	    };
 
-
 			$('.rm-task').click(function(e) {
 				e.preventDefault();
 
