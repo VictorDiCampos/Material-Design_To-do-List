@@ -6,22 +6,36 @@ $(document).ready(function(){
 
   	$scope.getAll = function(){
   		$http.get('/gettask').success(function(data){
-
-  			for (var i = 0; i < data.length; i++) {
-  				$scope.tasks.push(data[i]);
-  			};
-
+  			$scope.tasks = data;
 	    });
   	}
 
   	$scope.delTask = function(id){
-  		$http.post('/deltask',{id: id}).success(function(data){});
-  		$element = $(this).closest('div.task').remove();
+			$http.post('/deltask',{id: id}, {headers:{ 'X-CSRF-Token':  $('meta[name=csrf-token]').attr('content') }}).success(function(data){
+				for (var i = 0; i < $scope.tasks.length; i++) {
+					
+					console.log("id-Task:", id);
+					console.log("id-atual:", $scope.tasks[i].id);
+
+					if($scope.tasks[i].id === id){
+						// $scope.tasks(data[i]);
+						$scope.oldTasks = $scope.tasks;
+						console.log("oldTasks: ", $scope.oldTasks);
+						$scope.tasks = $scope.tasks.slice(0, i);
+						console.log("slice: ", $scope.tasks);
+						$scope.oldTasks = $scope.oldTasks.slice(i+1);
+						console.log("resto: ", $scope.oldTasks);
+						$scope.tasks.concat($scope.oldTasks);
+						console.log("final: ", $scope.tasks);
+					}				
+				};
+			});  		
   	}
 
   	$scope.addTask = function(description){  		
-  		$http.post('/newtask',{description: description}).success(function(data){
-  			console.log(data);
+  		$http.post('/newtask',{description: description}, {headers:{ 'X-CSRF-Token':  $('meta[name=csrf-token]').attr('content') }}).success(function(data){
+  			// console.log(data);
+  			$scope.tasks.push(data);
   		});
 
   	// 	$input = $('.mdl-textfield__input');
@@ -42,7 +56,7 @@ $(document).ready(function(){
    //      +'</label>'
    //      +'<span class="rm-task" ng-click="delTask(task.id)"><i class="material-icons">clear</i>'
    //      +'</div>';
-			// 	$(".task-list").append($task);
+				// $(".task-list").append($task);
 
 			// 	ids.push( data.todo.id );
 				
@@ -55,8 +69,6 @@ $(document).ready(function(){
 			// }
   		
   	}
-
-
 
 	});//fim taskListController
 

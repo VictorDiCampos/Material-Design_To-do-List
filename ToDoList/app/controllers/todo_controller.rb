@@ -8,23 +8,11 @@ class TodoController < ApplicationController
     if @todo.valid?
         @todo.save
         
-        respond_to do |format|
-          format.json {
-          }
-          format.html {   
-            render json: {success:true, todo: {id: @todo.id, description: @todo.description}}  
-          }
-        end      
+        render json: {success:true, todo: {id: @todo.id, description: @todo.description}}
         # flash[:success] = "A Clínica <strong>#{@clinic.name}</strong> foi criado com sucesso.".html_safe
         # redirect_to clinics_path
       else
-        respond_to do |format|
-          format.json {
-          }
-          format.html {
-            render json: {success:false}
-          }
-        end
+        render json: {success:false}
         # flash.now[:error] = "<strong>Erro</strong> ao criar a Clínica <strong>#{@clinic.name}</strong>, tente novamente.".html_safe
         # render :new
       end
