@@ -1,5 +1,4 @@
 class TodoController < ApplicationController
-  # def teste
   def newtask
 
     @todo = Todo.new
@@ -9,17 +8,14 @@ class TodoController < ApplicationController
         @todo.save
         
         render json: {success:true, todo: {id: @todo.id, description: @todo.description}}
-        # flash[:success] = "A Clínica <strong>#{@clinic.name}</strong> foi criado com sucesso.".html_safe
-        # redirect_to clinics_path
+
       else
         render json: {success:false}
-        # flash.now[:error] = "<strong>Erro</strong> ao criar a Clínica <strong>#{@clinic.name}</strong>, tente novamente.".html_safe
-        # render :new
+
       end
 
-    # render plain: params[:description]
-
   end
+
 
   def gettask
     @todos = Todo.all
@@ -37,13 +33,23 @@ class TodoController < ApplicationController
   def deltask    
     @todo = Todo.find(params[:id])   
     @todo.destroy
-    render json: {success:true} 
-
+    render json: {success:true}
   end
 
   def index
     @todos = Todo.all
     @todo = Todo.new
   end
+
+  def uptask
+    @todo = Todo.find(params[:id])
+    @todo.update(task_param)
+    render json: {success:true, todo: {id: @todo.id, description: @todo.description}}
+  end
+  
+  private
+    def task_param
+      params.require(:todo).permit(:description)
+    end
 
 end

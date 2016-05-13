@@ -66,7 +66,15 @@
             <input type="checkbox" id="switch-1" class="mdl-switch__input">
             <span class="mdl-switch__label" data-id={{task.id}}>{{task.description}}</span>
           </label>
-          <span class="rm-task" ng-click="delTask(task.id)"><i class="material-icons">clear</i>
+          <span class="edit-task" ng-click="editTask()"><i class="material-icons">edit</i></span>
+          <span class="rm-task" ng-click="delTask(task.id)"><i class="material-icons">clear</i></span>
+          <div class="edit-div">
+            <div class="mdl-textfield mdl-js-textfield">
+              <input class="mdl-textfield__input" type="text" id="edit" value={{task.description}} ng-model="description">
+              <!-- <label class="mdl-textfield__label" for="edit">Description...</label> -->
+            </div>
+            <span class="up-task" ng-click="upTask(task.id, task.description)"><i class="material-icons">done</i></span>
+          </div>
         </div>    
 
       </div>
