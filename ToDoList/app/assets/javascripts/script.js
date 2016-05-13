@@ -18,10 +18,13 @@ $(document).ready(function(){
 					// }			
 
 					if($scope.tasks[i].id === id){						
-						$scope.oldTasks = $scope.tasks;
-						$scope.tasks = $scope.tasks.slice(0, i);
-						$scope.oldTasks = $scope.oldTasks.slice(i+1);
-						$scope.tasks = $scope.tasks.concat($scope.oldTasks);
+						// $scope.oldTasks = $scope.tasks;
+						// $scope.tasks = $scope.tasks.slice(0, i);
+						// $scope.oldTasks = $scope.oldTasks.slice(i+1);
+						// $scope.tasks = $scope.tasks.concat($scope.oldTasks);
+						$scope.tasks.splice(i, 1);
+						i--;
+
 					}			
 				};
 			});  		
