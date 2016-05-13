@@ -118,6 +118,8 @@ body {
 	border-bottom: 1px solid black;	
 	padding: 18px 10px;
 	font-family: 'Roboto';
+	-webkit-transition-duration: 0.5s;
+  transition-duration: 0.5s;
 }
 .task:after {
 	content: "";
@@ -148,6 +150,14 @@ body {
 	padding: 10px;
 	-webkit-transition-duration: 0.5s;
   transition-duration: 0.5s;
+  overflow: hidden;
+}
+
+.edit-input {
+	background: transparent;
+	border: none;
+	border-bottom: 2px solid white;
+	color: white;
 }
 
 .up-task {

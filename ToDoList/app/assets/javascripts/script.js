@@ -34,15 +34,19 @@ $(document).ready(function(){
   		});
   	}
 
-		$scope.editTask = function(){
-			$(".edit-div").css("height","+=40");
-			$(".edit-div").css("opacity","1");
-			$(".task").css("min-height","200");
+		$scope.editTask = function(event){
+			$editDiv = angular.element(event.currentTarget.parentElement.children[3]);
+			$editDiv.css("height","60px");
+			$editDiv.css("opacity","1");
+			$(".task").css("min-height","100px");
   	}
 
-  	$scope.upTask = function(id, description){
+  	$scope.upTask = function(id, description, event){
   		$http.post('/uptask',{id: id, description: description}, {headers:{ 'X-CSRF-Token':  $('meta[name=csrf-token]').attr('content') }}).success(function(data){
-  		  			
+  			$editDiv = angular.element(event.currentTarget.parentElement);
+  			$editDiv.css("height","0px");
+				$editDiv.css("opacity","0");
+				$(".task").css("min-height","75px");
   		});
   	}
 
