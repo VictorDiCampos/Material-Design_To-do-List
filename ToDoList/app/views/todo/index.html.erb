@@ -46,8 +46,8 @@
             <div class="add-task-1">          
               <!-- Simple Textfield -->
               <div class="mdl-textfield mdl-js-textfield">
-                  <input class="mdl-textfield__input" type="text" id="sample1" ng-model="description">
-                  <label class="mdl-textfield__label" for="sample1">Description...</label>      
+                  <input class="mdl-textfield__input" type="text" id="sample1" ng-model="description" required="true">
+                  <label class="mdl-textfield__label" for="sample1">Description...</label>                  
               </div>
             </div>
 
@@ -57,6 +57,8 @@
                 <i class="material-icons">add</i>                
               </button>              
             </div>
+            <div ng-show="!description">Esse campo é obrigatório.</div>            
+            <!-- <div ng-show="description.$error.required">Esse campo é obrigatório.</div> -->
           </form>
         </div>
 
@@ -70,10 +72,10 @@
           <span class="rm-task" ng-click="delTask(task.id)"><i class="material-icons">clear</i></span>
           <div class="edit-div">
             <div class="mdl-textfield mdl-js-textfield">
-              <input class="edit-input" type="text" id="edit" ng-model="task.description" >
-              <!-- <label class="mdl-textfield__label" for="edit">Description...</label> -->
+              <input class="edit-input" type="text" id="edit" ng-model="task.description" required="true"> 
             </div>
             <span class="up-task" ng-click="upTask(task.id, task.description, $event)"><i class="material-icons">done</i></span>
+            <div ng-show="!task.description">Esse campos é obrigatório.</div>          
           </div>
         </div>    
 
