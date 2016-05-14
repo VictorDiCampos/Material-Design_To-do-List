@@ -66,6 +66,8 @@ Rails.application.routes.draw do
 
   post "deltask/" => "todo#deltask"
 
+  post "uptask/" => "todo#uptask"
+
   # root :to => 'application#index'
 
   root 'todo#index'

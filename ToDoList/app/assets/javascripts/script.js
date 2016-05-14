@@ -1,137 +1,58 @@
-// var tasks = function() {
-// 	var init = function() {
-// 		console.log('iniciou');
-// 		getTasks();
-// 	}
-
-// 	var getTasks = function() {
-// 		alert('pegar task');
-// 		var task = {id: 2, description: 'asdasdas'};
-// 		setTask(task);
-// 	}
-
-// 	var setTask = function(task) {
-// 		console.log(task, 'inserir no html')
-// 		$('fsdf').on('click', clickRemoveTask);
-// 	}
-
-// 	var clickRemoveTask = function() {
-// 		$(this)
-// 	}
-
-// 	return { init: init };
-// }();
-
-// JQUERY TEMPLATE
-
-// $(document).ready(tasks.init);
-
 $(document).ready(function(){
-	// $.get( '/gettask', function( data ) {
-	// 	console.log( "Load was performed." );
-	// });
 
-	$.ajax({
-	  type: "GET",
-	  url: "/gettask",
-	  dataType: "JSON",
-	  data: { 'description': '' },
-	  success: function(data) {
+	var toDoList = angular.module('todolist', []);
+  toDoList.controller('taskListController', function($scope, $http){
+  	$scope.tasks = [];
+  	$scope.description = "";
 
-	  	var ids = [];
+  	$scope.getAll = function(){
+  		$http.get('/gettask').success(function(data){
+  			$scope.tasks = data;
+	    });
+  	}
 
-	    for (var i = 0; i < data.length; ++i) {
-	  		$task = '<div class="task"><label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="switch-1"><input type="checkbox" id="switch-1" class="mdl-switch__input"><span class="mdl-switch__label">'+data[i].description+ '</span></label><span class="rm-task"><i class="material-icons">clear</i></div>';			
-				$(".task-list").append($task);
-	    };
+  	$scope.delTask = function(id){
+			$http.post('/deltask',{id: id}, {headers:{ 'X-CSRF-Token':  $('meta[name=csrf-token]').attr('content') }}).success(function(data){
+				for (var i = 0; i < $scope.tasks.length; i++) {
+					// if($scope.tasks[i].id === id){												
+					// 	$scope.tasks = $scope.tasks.slice(0, i).concat($scope.oldTasks.slice(i+1));
+					// }			
+					// $scope.oldTasks = $scope.tasks;
+					// $scope.tasks = $scope.tasks.slice(0, i);
+					// $scope.oldTasks = $scope.oldTasks.slice(i+1);
+					// $scope.tasks = $scope.tasks.concat($scope.oldTasks);
 
-
-			$('.rm-task').click(function(e) {
-				e.preventDefault();
-
-				for (var i = 0; i < data.length; ++i) {
-
-					$spanText = $(this).closest("div.task").find("span.mdl-switch__label").text();
-					$taskDesc = data[i].description;
-
-					if ( $spanText == $taskDesc ) {						
-
-			  		$.post('/deltask', {id: data[i].id}, function(data){});
-
-		 			 	$element = this.closest('div.task').remove();
-
-					};
-
+					if($scope.tasks[i].id === id){						
+						$scope.tasks.splice(i, 1);
+						i--;
+					}			
 				};
+			});  		
+  	}
 
-			});
-	  }
-	});
+  	$scope.addTask = function(description){  		
+  		$http.post('/newtask',{description: description}, {headers:{ 'X-CSRF-Token':  $('meta[name=csrf-token]').attr('content') }}).success(function(data){  			
+  			$newtask = {id: data.todo.id, description: data.todo.description};
+  			$scope.tasks.push($newtask);  			
+  		});
+  	}
 
-	var ids = [];
+		$scope.editTask = function(event){
+			$editDiv = angular.element(event.currentTarget.parentElement.children[3]);
+			$editDiv.css("height","100px");
+			$editDiv.css("opacity","1");			
+  	}
 
-	$btn_add_task = $('.btn-add-task');
-	$btn_add_task.click(function(e){
+  	$scope.upTask = function(id, description, event){
+  		if(description.length > 0){
+	  		$http.post('/uptask',{id: id, description: description}, {headers:{ 'X-CSRF-Token':  $('meta[name=csrf-token]').attr('content') }}).success(function(data){
+	  			$editDiv = angular.element(event.currentTarget.parentElement);
+	  			$editDiv.css("height","0px");
+					$editDiv.css("opacity","0");					
+	  		});  			
+  		}
+  	}
 
-	  $.post('/newtask', {description: $(".mdl-textfield__input").val()}, function(data){
-		  // console.log(data.todo.description);
-			
-			$input = $('.mdl-textfield__input');
-			$label = $('.mdl-textfield__label');
-
-			if($input.val().length > 0) {
-				e.preventDefault();
-
-				$task = '<div class="task"><label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="switch-1"><input type="checkbox" id="switch-1" class="mdl-switch__input"><span class="mdl-switch__label">'+$(".mdl-textfield__input").val()+ '</span></label><span class="rm-task"><i class="material-icons">clear</i></div>';
-				$(".task-list").append($task);
-
-				ids.push( data.todo.id );
-
-				$rm_task = $('.rm-task');
-				$rm_task.click(function(e) {
-					e.preventDefault();
-
-					$description = $(this).closest("div.task").find("span.mdl-switch__label").text();
-
-					$.ajax({
-						type: "GET",
-						url: "/gettask",
-						dataType: "JSON",
-						data: { 'description': '' },
-						success: function(data) {
-
-							$currentId = -1;
-
-							for (var i = 0; i < ids.length; ++i) {
-
-								if ( data[i].description === $description) {							
-									$currentId = data[i].id;									
-								};
-
-							};							
-
-							if( $currentId >= 0 ){					
-								$.post('/deltask', {id: $currentId}, function(data){});
-							};
-
-						}
-					});
-					
-					$element = this.closest('div.task').remove();
-
-				});
-			}
-
-			else if ( $input.val().length === 0 && $('.input-error').length === 0 ) {
-				$label.css('color', 'red');		
-				$message = '<span class="input-error">O campo a cima e obrigatorio.</span>';
-				$(".add-task").append($message);			
-			}
-
-	  });
-
-	return false;
-
-	});
-
-});
+	});//fim taskListController
+	
+});//fim $(document).ready
